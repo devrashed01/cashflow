@@ -1,0 +1,467 @@
+[
+    {
+        "description": "i bought a new mac",
+        "amount": 606,
+        "type": "profit"
+    },
+    {
+        "description": "dining out",
+        "amount": 903,
+        "type": "profit"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 361,
+        "type": "expense"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 447,
+        "type": "profit"
+    },
+    {
+        "description": "freelance project completed",
+        "amount": 662,
+        "type": "expense"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 407,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 825,
+        "type": "expense"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 806,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 525,
+        "type": "profit"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 215,
+        "type": "expense"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 909,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 459,
+        "type": "expense"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 229,
+        "type": "expense"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 828,
+        "type": "profit"
+    },
+    {
+        "description": "car maintenance",
+        "amount": 41,
+        "type": "expense"
+    },
+    {
+        "description": "sold my old phone",
+        "amount": 813,
+        "type": "profit"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 593,
+        "type": "expense"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 270,
+        "type": "profit"
+    },
+    {
+        "description": "sold my old bike",
+        "amount": 742,
+        "type": "expense"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 637,
+        "type": "profit"
+    },
+    {
+        "description": "car maintenance",
+        "amount": 673,
+        "type": "expense"
+    },
+    {
+        "description": "stock investment gains",
+        "amount": 679,
+        "type": "expense"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 369,
+        "type": "profit"
+    },
+    {
+        "description": "monthly rent payment",
+        "amount": 360,
+        "type": "profit"
+    },
+    {
+        "description": "book purchase",
+        "amount": 331,
+        "type": "profit"
+    },
+    {
+        "description": "book purchase",
+        "amount": 394,
+        "type": "profit"
+    },
+    {
+        "description": "i have made profit from XY company",
+        "amount": 978,
+        "type": "profit"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 302,
+        "type": "expense"
+    },
+    {
+        "description": "freelance project completed",
+        "amount": 897,
+        "type": "profit"
+    },
+    {
+        "description": "monthly rent payment",
+        "amount": 58,
+        "type": "expense"
+    },
+    {
+        "description": "monthly rent payment",
+        "amount": 369,
+        "type": "expense"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 688,
+        "type": "profit"
+    },
+    {
+        "description": "book purchase",
+        "amount": 300,
+        "type": "profit"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 992,
+        "type": "profit"
+    },
+    {
+        "description": "dining out",
+        "amount": 10,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 217,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 412,
+        "type": "profit"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 901,
+        "type": "expense"
+    },
+    {
+        "description": "book purchase",
+        "amount": 936,
+        "type": "expense"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 622,
+        "type": "profit"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 844,
+        "type": "profit"
+    },
+    {
+        "description": "dining out",
+        "amount": 423,
+        "type": "expense"
+    },
+    {
+        "description": "selling old furniture",
+        "amount": 720,
+        "type": "profit"
+    },
+    {
+        "description": "stock investment gains",
+        "amount": 37,
+        "type": "expense"
+    },
+    {
+        "description": "repairing home appliances",
+        "amount": 484,
+        "type": "expense"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 190,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 135,
+        "type": "expense"
+    },
+    {
+        "description": "selling old furniture",
+        "amount": 341,
+        "type": "expense"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 403,
+        "type": "profit"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 522,
+        "type": "expense"
+    },
+    {
+        "description": "selling old furniture",
+        "amount": 309,
+        "type": "expense"
+    },
+    {
+        "description": "selling old furniture",
+        "amount": 76,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 804,
+        "type": "expense"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 300,
+        "type": "profit"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 132,
+        "type": "profit"
+    },
+    {
+        "description": "i have made profit from XY company",
+        "amount": 950,
+        "type": "profit"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 188,
+        "type": "profit"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 349,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 434,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 478,
+        "type": "expense"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 907,
+        "type": "profit"
+    },
+    {
+        "description": "sold my old phone",
+        "amount": 278,
+        "type": "expense"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 170,
+        "type": "profit"
+    },
+    {
+        "description": "freelance design work",
+        "amount": 256,
+        "type": "profit"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 875,
+        "type": "profit"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 751,
+        "type": "expense"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 920,
+        "type": "expense"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 678,
+        "type": "expense"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 938,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 99,
+        "type": "profit"
+    },
+    {
+        "description": "i have made profit from XY company",
+        "amount": 196,
+        "type": "expense"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 199,
+        "type": "profit"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 613,
+        "type": "profit"
+    },
+    {
+        "description": "book purchase",
+        "amount": 386,
+        "type": "profit"
+    },
+    {
+        "description": "received birthday gift",
+        "amount": 940,
+        "type": "profit"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 739,
+        "type": "expense"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 438,
+        "type": "expense"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 540,
+        "type": "profit"
+    },
+    {
+        "description": "monthly rent payment",
+        "amount": 82,
+        "type": "expense"
+    },
+    {
+        "description": "concert ticket sales",
+        "amount": 418,
+        "type": "expense"
+    },
+    {
+        "description": "sold my old phone",
+        "amount": 372,
+        "type": "profit"
+    },
+    {
+        "description": "freelance project completed",
+        "amount": 333,
+        "type": "profit"
+    },
+    {
+        "description": "utility bill payment",
+        "amount": 781,
+        "type": "expense"
+    },
+    {
+        "description": "car maintenance",
+        "amount": 81,
+        "type": "expense"
+    },
+    {
+        "description": "dining out",
+        "amount": 935,
+        "type": "expense"
+    },
+    {
+        "description": "book purchase",
+        "amount": 146,
+        "type": "expense"
+    },
+    {
+        "description": "freelance project completed",
+        "amount": 405,
+        "type": "profit"
+    },
+    {
+        "description": "new laptop purchase",
+        "amount": 632,
+        "type": "expense"
+    },
+    {
+        "description": "sold my old bike",
+        "amount": 672,
+        "type": "expense"
+    },
+    {
+        "description": "i have made profit from XY company",
+        "amount": 352,
+        "type": "expense"
+    },
+    {
+        "description": "groceries shopping",
+        "amount": 234,
+        "type": "expense"
+    },
+    {
+        "description": "i bought a new mac",
+        "amount": 300,
+        "type": "expense"
+    },
+    {
+        "description": "i have earned from one of my business",
+        "amount": 579,
+        "type": "earned"
+    }
+]
