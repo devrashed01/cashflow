@@ -1,42 +1,42 @@
-import type { FormProps } from "antd";
-import { App, Button, Checkbox, Form, Input } from "antd";
+import { useMutation } from "@tanstack/react-query";
+import { App, Button, Form, Input } from "antd";
 import React from "react";
 import styled from "styled-components";
 
-type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
-};
+import { loginAction } from "../actions/auth";
+import { useAuthContext } from "../context/AuthContext";
+
+type FieldType = { name?: string; password?: string };
 
 const Login: React.FC = () => {
   const { message } = App.useApp();
-
-  const onFinish: FormProps<FieldType>["onFinish"] = () => {
-    message.success("Login Success");
-    localStorage.setItem("token", "token");
-    window.location.href = "/welcome";
-  };
-
-  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = () => {
-    message.error("Provide valid credentials");
-  };
+  const { login } = useAuthContext();
+  const { mutate: handleSubmit } = useMutation({
+    mutationFn: (values: LoginPayload) => loginAction(values),
+    onSuccess: (data) => {
+      login(data.data.token);
+    },
+    onError: (error) => {
+      message.error(
+        error.message
+          ? error.message
+          : "An error occurred. Please try again later."
+      );
+    },
+  });
 
   return (
     <LoginWrapper>
       <Form
-        name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
+        onFinish={handleSubmit}
       >
         <Form.Item<FieldType>
           label="Username"
-          name="username"
+          name="name"
           rules={[{ required: true, message: "Please input your username!" }]}
         >
           <Input />
@@ -48,14 +48,6 @@ const Login: React.FC = () => {
           rules={[{ required: true, message: "Please input your password!" }]}
         >
           <Input.Password />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

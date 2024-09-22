@@ -10,7 +10,6 @@ import {
   Row,
   Select,
 } from "antd";
-import dayjs from "dayjs";
 import React, { useEffect } from "react";
 
 interface AddUpdateTransactionModalProps {
@@ -18,7 +17,6 @@ interface AddUpdateTransactionModalProps {
   onClose: () => void;
   onSave: (transaction: Transaction) => void;
   data?: Transaction;
-  users: User[];
   form: FormInstance;
 }
 
@@ -36,7 +34,6 @@ const AddUpdateTransactionModal: React.FC<AddUpdateTransactionModalProps> = ({
   onSave,
   data,
   form,
-  users,
 }) => {
   const handleSubmit = (values: Transaction) => {
     onSave(values);
@@ -48,7 +45,6 @@ const AddUpdateTransactionModal: React.FC<AddUpdateTransactionModalProps> = ({
     if (data) {
       const parsedValues = {
         ...data,
-        transactionDate: dayjs(data.transactionDate),
       };
       form.setFieldsValue(parsedValues);
     }
@@ -64,23 +60,6 @@ const AddUpdateTransactionModal: React.FC<AddUpdateTransactionModalProps> = ({
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         <Form.Item hidden name="id">
           <Input />
-        </Form.Item>
-        <Form.Item
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-          label="User"
-          name="userId"
-        >
-          <Select
-            placeholder="Select your type"
-            options={users.map((user) => ({
-              label: user.name,
-              value: user.id,
-            }))}
-          />
         </Form.Item>
         <Form.Item
           rules={[

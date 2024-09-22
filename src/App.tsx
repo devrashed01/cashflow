@@ -3,21 +3,18 @@ import { App, ConfigProvider } from "antd";
 import React from "react";
 
 import queryClient from "./config/queryClient.config";
-import { TransactionProvider } from "./context/TransactionContext";
-import { UserProvider } from "./context/UserContext";
+import { AuthProvider } from "./context/AuthContext";
 import Routes from "./pages";
 import themeConfig from "./theme/config";
 
 const MyApp: React.FC = () => (
   <ConfigProvider theme={themeConfig}>
     <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <TransactionProvider>
-          <App>
-            <Routes />
-          </App>
-        </TransactionProvider>
-      </UserProvider>
+      <AuthProvider>
+        <App>
+          <Routes />
+        </App>
+      </AuthProvider>
     </QueryClientProvider>
   </ConfigProvider>
 );

@@ -4,13 +4,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { useState } from "react";
-
+import { useAuthContext } from "../context/AuthContext";
 import Layout from "../features/layouts/Layout";
+import Category from "./category";
 import Dashboard from "./dashboard";
 import Login from "./login";
 import Transactions from "./transactions";
-import Users from "./users";
 
 const privateRouter = createBrowserRouter([
   {
@@ -18,19 +17,19 @@ const privateRouter = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <Navigate to="/dashboard" />,
+        index: true,
+        element: <Navigate to="dashboard" />,
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: <Dashboard />,
       },
       {
-        path: "/users",
-        element: <Users />,
+        path: "category",
+        element: <Category />,
       },
       {
-        path: "/transactions",
+        path: "transactions",
         element: <Transactions />,
       },
     ],
@@ -53,6 +52,6 @@ const publicRouter = createBrowserRouter([
 ]);
 
 export default function Routes() {
-  const [token] = useState(localStorage.getItem("token"));
+  const { token } = useAuthContext();
   return <RouterProvider router={token ? privateRouter : publicRouter} />;
 }

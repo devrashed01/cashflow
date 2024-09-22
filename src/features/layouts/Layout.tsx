@@ -1,13 +1,17 @@
 import {
+  BankOutlined,
+  BoxPlotOutlined,
   HomeOutlined,
-  TransactionOutlined,
-  UserOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
+import { useQuery } from "@tanstack/react-query";
 import type { MenuProps } from "antd";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Popconfirm, Spin } from "antd";
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { getProfile } from "../../actions/auth";
+import { useAuthContext } from "../../context/AuthContext";
 
 const { Content, Sider } = Layout;
 
@@ -31,15 +35,35 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem("/dashboard", "Dashboard", "1", <HomeOutlined />),
-  getItem("/users", "Users", "2", <UserOutlined />),
-  getItem("/transactions", "Transactions", "3", <TransactionOutlined />),
+  getItem("/category", "Category", "2", <BoxPlotOutlined />),
+  getItem("/transactions", "Transactions", "3", <BankOutlined />),
 ];
 
 const App: React.FC = () => {
+  const location = useLocation();
+  const { logout } = useAuthContext();
   const [collapsed, setCollapsed] = useState(true);
   const selectedKey = items.find((el: any) =>
     window.location.pathname.includes(el.href)
   )?.key;
+
+  const { isLoading, data } = useQuery({
+    queryKey: ["profile"],
+    queryFn: getProfile,
+  });
+
+  if (isLoading) {
+    return (
+      <WindowCenter>
+        <Spin size="large" />
+      </WindowCenter>
+    );
+  }
+
+  if (!data) {
+    logout();
+    return <Navigate to="/" state={location} />;
+  }
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -49,9 +73,11 @@ const App: React.FC = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <Logo>
-          <img style={{ width: "60px" }} src="logo.svg" alt="logo" />
-        </Logo>
+        <Popconfirm title="Are you confirm to logout ?" onConfirm={logout}>
+          <Logo>
+            <LogoutOutlined />
+          </Logo>
+        </Popconfirm>
         <Menu
           theme="light"
           defaultSelectedKeys={[selectedKey as string]}
@@ -69,10 +95,13 @@ const App: React.FC = () => {
 };
 
 export const Logo = styled.div`
-  color: #000;
-  font-weight: 600;
+  cursor: pointer;
   text-align: center;
   padding: 10px;
+
+  &:hover {
+    background: ${({ theme }) => theme.colorSecondary};
+  }
 `;
 
 export const StyledContent = styled(Content)`
@@ -84,3 +113,10 @@ export const MainLayout = styled(Layout)`
 `;
 
 export default App;
+
+export const WindowCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`;

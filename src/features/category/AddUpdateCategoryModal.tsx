@@ -1,22 +1,22 @@
 import { Button, Col, Form, FormInstance, Input, Modal, Row } from "antd";
 import React, { useEffect } from "react";
 
-interface AddUpdateUserModalProps {
+interface AddUpdateCategoryModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (user: User) => void;
-  data?: User;
+  onSave: (transaction: Category) => void;
+  data?: Category;
   form: FormInstance;
 }
 
-const AddUpdateUserModal: React.FC<AddUpdateUserModalProps> = ({
+const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
   isOpen,
   onClose,
   onSave,
   data,
   form,
 }) => {
-  const handleSubmit = (values: User) => {
+  const handleSubmit = (values: Category) => {
     onSave(values);
     onClose();
     form.resetFields();
@@ -24,18 +24,29 @@ const AddUpdateUserModal: React.FC<AddUpdateUserModalProps> = ({
 
   useEffect(() => {
     if (data) {
-      form.setFieldsValue(data);
+      const parsedValues = {
+        ...data,
+      };
+      form.setFieldsValue(parsedValues);
     }
   }, [data, form]);
 
   return (
-    <Modal title="Add User" open={isOpen} onCancel={onClose} footer={null}>
+    <Modal title="Add Category" open={isOpen} onCancel={onClose} footer={null}>
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         <Form.Item hidden name="id">
           <Input />
         </Form.Item>
-        <Form.Item label="Name" name="name">
-          <Input placeholder="Enter your name" />
+        <Form.Item
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+          label="Name"
+          name="name"
+        >
+          <Input.TextArea placeholder="Enter category name" />
         </Form.Item>
         <Row justify="end" gutter={10}>
           <Col>
@@ -43,7 +54,7 @@ const AddUpdateUserModal: React.FC<AddUpdateUserModalProps> = ({
           </Col>
           <Col>
             <Button type="primary" htmlType="submit">
-              Create
+              {data ? "Update" : "Create"}
             </Button>
           </Col>
         </Row>
@@ -52,4 +63,4 @@ const AddUpdateUserModal: React.FC<AddUpdateUserModalProps> = ({
   );
 };
 
-export default AddUpdateUserModal;
+export default AddUpdateCategoryModal;

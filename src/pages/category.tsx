@@ -1,30 +1,40 @@
 import { PlusOutlined } from "@ant-design/icons";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button, Card, Form, Popconfirm, Table } from "antd";
 import { useState } from "react";
-import AddUpdateTransactionModal from "../features/transactions/AddUpdateTransactionModal";
+import { deleteCategoryAction, getCategoriesAction } from "../actions/category";
+import AddUpdateCategoryModal from "../features/category/AddUpdateCategoryModal";
 
-export default function Transactions() {
+export default function Category() {
   const [form] = Form.useForm();
+  const queryClient = useQueryClient();
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectedTransaction, setSelectedTransaction] = useState<
-    Transaction | undefined
+    Category | undefined
   >(undefined);
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategoriesAction,
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: deleteCategoryAction,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["categories"] });
+    },
+  });
 
   const columns = [
     {
-      title: "Text",
-      dataIndex: "text",
-      key: "text",
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: "Amount",
-      dataIndex: "amount",
-      key: "amount",
-    },
-    {
-      title: "Type",
-      dataIndex: "type",
-      key: "type",
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
     },
     {
       title: "Action",
@@ -52,7 +62,7 @@ export default function Transactions() {
               title="Are you sure to delete this transaction?"
               okText="Yes"
               cancelText="No"
-              // onConfirm={() => deleteTransaction(record.id)}
+              onConfirm={() => mutate(record.id)}
             >
               Delete
             </Popconfirm>
@@ -64,7 +74,7 @@ export default function Transactions() {
 
   return (
     <>
-      <AddUpdateTransactionModal
+      <AddUpdateCategoryModal
         form={form}
         onClose={() => {
           form.resetFields();
@@ -76,14 +86,14 @@ export default function Transactions() {
         data={selectedTransaction}
       />
       <Card
-        title="Transactions"
+        title="Category"
         extra={
           <Button
             onClick={() => setIsModalVisible(true)}
             type="primary"
             icon={<PlusOutlined />}
           >
-            Add
+            Add Category
           </Button>
         }
         styles={{
@@ -93,9 +103,10 @@ export default function Transactions() {
         }}
       >
         <Table
+          loading={isLoading}
           scroll={{ x: 768 }}
           rowKey={"id"}
-          dataSource={[]}
+          dataSource={data}
           columns={columns}
           pagination={false}
         />
