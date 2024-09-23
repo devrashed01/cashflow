@@ -1,6 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { App, Button, Card, Form, Popconfirm, Table } from "antd";
+import { ColumnType } from "antd/es/table";
 import { useState } from "react";
 import {
   createCategoryAction,
@@ -54,11 +55,43 @@ export default function Category() {
     },
   });
 
-  const columns = [
+  const columns: ColumnType<Category>[] = [
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+    },
+    {
+      title: "Max amount",
+      dataIndex: "maxAmount",
+      key: "maxAmount",
+      render: (value) => (value > 0 ? `${value} Taka` : "No limit"),
+    },
+    {
+      title: "Total expense",
+      dataIndex: "transactions",
+      key: "transactions",
+      render: (transactions) => {
+        const totalExpense = transactions.reduce(
+          (acc: number, transaction: Transaction) =>
+            transaction.type === "expense" ? acc + transaction.amount : acc,
+          0
+        );
+        return totalExpense > 0 ? `${totalExpense} Taka` : "No expense";
+      },
+    },
+    {
+      title: "Total income",
+      dataIndex: "transactions",
+      key: "transactions-income",
+      render: (transactions) => {
+        const totalExpense = transactions.reduce(
+          (acc: number, transaction: Transaction) =>
+            transaction.type === "income" ? acc + transaction.amount : acc,
+          0
+        );
+        return totalExpense > 0 ? `${totalExpense} Taka` : "No income";
+      },
     },
     {
       title: "Description",
