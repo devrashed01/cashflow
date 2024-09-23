@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 
 interface AddUpdateCategoryModalProps {
   isOpen: boolean;
+  isLoading: boolean;
   onClose: () => void;
   onSave: (transaction: Category) => void;
   data?: Category;
@@ -11,6 +12,7 @@ interface AddUpdateCategoryModalProps {
 
 const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
   isOpen,
+  isLoading,
   onClose,
   onSave,
   data,
@@ -18,8 +20,6 @@ const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
 }) => {
   const handleSubmit = (values: Category) => {
     onSave(values);
-    onClose();
-    form.resetFields();
   };
 
   useEffect(() => {
@@ -34,9 +34,6 @@ const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
   return (
     <Modal title="Add Category" open={isOpen} onCancel={onClose} footer={null}>
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
-        <Form.Item hidden name="id">
-          <Input />
-        </Form.Item>
         <Form.Item
           rules={[
             {
@@ -48,12 +45,20 @@ const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
         >
           <Input.TextArea placeholder="Enter category name" />
         </Form.Item>
+        <Form.Item label="Description" name="description">
+          <Input.TextArea placeholder="Enter description" />
+        </Form.Item>
         <Row justify="end" gutter={10}>
           <Col>
             <Button onClick={onClose}>Cancel</Button>
           </Col>
           <Col>
-            <Button type="primary" htmlType="submit">
+            <Button
+              loading={isLoading}
+              disabled={isLoading}
+              type="primary"
+              htmlType="submit"
+            >
               {data ? "Update" : "Create"}
             </Button>
           </Col>

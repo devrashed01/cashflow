@@ -12,7 +12,7 @@ privateRequest.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response?.status === 400 && error.response.data) {
+    if ([400, 422].includes(error.response?.status) && error.response.data) {
       return Promise.reject(error.response.data);
     }
     return Promise.reject(error);
