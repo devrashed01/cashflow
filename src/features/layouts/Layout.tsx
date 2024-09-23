@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { getProfile } from "../../actions/auth";
 import { useAuthContext } from "../../context/AuthContext";
 
-const { Content, Sider, Header } = Layout;
+const { Content, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 

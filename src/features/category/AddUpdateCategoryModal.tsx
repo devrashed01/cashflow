@@ -46,7 +46,7 @@ const AddUpdateCategoryModal: React.FC<AddUpdateCategoryModalProps> = ({
           <Input placeholder="Enter category name" />
         </Form.Item>
         <Form.Item label="Max Amount" name="maxAmount">
-          <Input placeholder="Enter max amount" />
+          <Input inputMode="numeric" placeholder="Enter max amount" />
         </Form.Item>
         <Form.Item label="Description" name="description">
           <Input.TextArea placeholder="Enter description" />

@@ -90,6 +90,7 @@ const AddUpdateTransactionModal: React.FC<AddUpdateTransactionModalProps> = ({
         >
           <InputNumber
             min={0}
+            inputMode="numeric"
             style={{ width: "100%" }}
             placeholder="Enter your amount"
           />
