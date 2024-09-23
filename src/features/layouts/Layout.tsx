@@ -6,14 +6,14 @@ import {
 } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import type { MenuProps } from "antd";
-import { Layout, Menu, Popconfirm, Spin } from "antd";
-import React, { useState } from "react";
+import { FloatButton, Layout, Menu, Popconfirm, Spin } from "antd";
+import React, { useEffect, useState } from "react";
 import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { getProfile } from "../../actions/auth";
 import { useAuthContext } from "../../context/AuthContext";
 
-const { Content, Sider } = Layout;
+const { Content, Sider, Header } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -42,10 +42,24 @@ const items: MenuItem[] = [
 const App: React.FC = () => {
   const location = useLocation();
   const { logout } = useAuthContext();
+  const [isMobile, setIsMobile] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const selectedKey = items.find((el: any) =>
     window.location.pathname.includes(el.href)
   )?.key;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const { isLoading, data } = useQuery({
     queryKey: ["profile"],
@@ -63,6 +77,26 @@ const App: React.FC = () => {
   if (!data) {
     logout();
     return <Navigate to="/" state={location} />;
+  }
+
+  if (isMobile) {
+    return (
+      <Layout style={{ minHeight: "100vh" }}>
+        <Menu
+          mode="horizontal"
+          theme="light"
+          defaultSelectedKeys={[selectedKey as string]}
+          items={items}
+        />
+        <StyledContent>
+          <Outlet />
+        </StyledContent>
+
+        <Popconfirm title="Are you confirm to logout ?" onConfirm={logout}>
+          <FloatButton shape="square" icon={<LogoutOutlined />} />
+        </Popconfirm>
+      </Layout>
+    );
   }
 
   return (
@@ -90,6 +124,9 @@ const App: React.FC = () => {
           <Outlet />
         </StyledContent>
       </MainLayout>
+      <Popconfirm title="Are you confirm to logout ?" onConfirm={logout}>
+        <FloatButton shape="square" icon={<LogoutOutlined />} />
+      </Popconfirm>
     </Layout>
   );
 };
