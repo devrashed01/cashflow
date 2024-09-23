@@ -1,44 +1,36 @@
-import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
+import { useQuery } from "@tanstack/react-query";
 import { Button, Card, Col, Row, Statistic } from "antd";
+import { Link } from "react-router-dom";
+import { getStatistics } from "../actions/dashboard";
 
 export default function Dashboard() {
-  console.log("dashboard page loaded...");
+  const { data, isLoading } = useQuery({
+    queryKey: ["statistics"],
+    queryFn: getStatistics,
+  });
+
   return (
     <>
       <Card>
         <Row gutter={16}>
           <Col lg={6}>
-            <Statistic title="Total users" value={0} />
-            <Button style={{ marginTop: 16 }} href="/users" type="primary">
-              Add user
-            </Button>
+            <Statistic
+              loading={isLoading}
+              title="Total expense"
+              value={data?.totalExpenses}
+            />
           </Col>
           <Col lg={6}>
             <Statistic
-              title="Total given loan"
-              value={0}
-              precision={2}
-              suffix="Taka"
-              valueStyle={{ color: "red" }}
-              prefix={<ArrowUpOutlined />}
+              loading={isLoading}
+              title="Total income"
+              value={data?.totalIncomes}
             />
-            <Button
-              style={{ marginTop: 16 }}
-              href="/transactions"
-              type="primary"
-            >
-              Add transaction
-            </Button>
           </Col>
           <Col lg={6}>
-            <Statistic
-              title="Total received/return loan"
-              value={0}
-              precision={2}
-              valueStyle={{ color: "green" }}
-              prefix={<ArrowDownOutlined />}
-              suffix="Taka"
-            />
+            <Button style={{ marginTop: 16 }} type="primary">
+              <Link to="/transactions">View transactions</Link>
+            </Button>
           </Col>
         </Row>
       </Card>
